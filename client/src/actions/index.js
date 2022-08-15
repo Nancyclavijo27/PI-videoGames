@@ -13,6 +13,9 @@ export function getAllGames() {
         .catch((err) => console.log(err));
     };
   }
+
+
+  
   
 
 //export function getAllGames() {

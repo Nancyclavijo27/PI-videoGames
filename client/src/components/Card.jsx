@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-
+import "./Card.css";
 
 export default function Card({ id, genres, name, background_image, rating }) {
   // genres = genres?.map((genres) =>
@@ -8,7 +8,7 @@ export default function Card({ id, genres, name, background_image, rating }) {
   // ); ver para cambiar el nombre despues
 
   return (
-    <div >
+    <div className='cardContainer'>
       <div>
         <div>
           <img
@@ -18,15 +18,15 @@ export default function Card({ id, genres, name, background_image, rating }) {
             width="150px"
           />
         </div>
-        <h3 className="text-title">{name}</h3>
-        <p className="text-body">{rating}</p>
-        <p className="text-body">
+        <h3>{name}</h3>
+        <p>{rating}</p>
+        <p>
           Genres:{" "}
           {Array.isArray(genres) ? genres.map((e) => e.name + " ") : genres}
         </p>
       </div>
       <Link className="por" to={`/videogame/${id}`}>
-        <button className="card-button">More info</button>
+        <button>More info</button>
       </Link>
     </div>
   );

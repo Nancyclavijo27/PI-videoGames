@@ -4,21 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import {getAllGames} from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
+import Paginado from "./Paginado";
+import "./Home.css";
 //import NavBar from "./NavBar";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allGames = useSelector((state) => state.games);
   //const [orden, setOrden] = useState("");
- // const [currentPage, setCurrentPage] = useState(1);
-  //const [gamesPerPage, setGamesPerPage] = useState(15);
- // const indexOfLastGame = currentPage * gamesPerPage; //15
- // const indexOfFirstGame = indexOfLastGame - gamesPerPage; //0
- // const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame);
+ const [currentPage, setCurrentPage] = useState(1); //pagina actual
+ const [gamesPerPage, setGamesPerPage] = useState(15);//videos por pagina
+ const indexOfLastGame = currentPage * gamesPerPage; //15 
+ const indexOfFirstGame = indexOfLastGame - gamesPerPage; //0
+ const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame);
 
-  //const paginado = (pageNumber) => {
-  //  setCurrentPage(pageNumber);
-  //};
+ const paginado = (pageNumber) => {
+   setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     dispatch(getAllGames());
@@ -61,9 +63,16 @@ function handleClick(e){
          <option  value= "All">Temperamentos</option>
             
     </select>
+    <div>
+        <Paginado 
+          gamesPerPage={gamesPerPage}
+          allVideoGames={allGames.length}
+          paginado={paginado}
+        />
+      </div>
      
-      <div>
-        {allGames?.map((e) => {
+      <div className="card-dogs">
+        {currentGames?.map((e) => {
             return (
               <Fragment>
               <Link  to={`/home/${e.id}`}>

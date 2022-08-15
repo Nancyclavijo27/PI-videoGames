@@ -1,0 +1,25 @@
+.cardContainer {
+    width: 260px;
+    height: 330px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    /* background: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#03bac79e); */
+    /* background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); */
+    background-color: #852a2a;
+    box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
+    border-radius: 20px;
+    box-shadow: var(--box_shadow_card);
+}
+ 
+  
+  
+  
+  
+ 
+ 
