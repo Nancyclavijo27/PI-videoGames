@@ -1,17 +1,19 @@
 import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getAllGames} from "../actions";
+import {getAllGames, filterByGenre,  getAllGenres,  filterCreated, orderByRating, orderByName} from "../actions";
 import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginado";
+import SearchBar from "./SearchBar";
 import "./Home.css";
 //import NavBar from "./NavBar";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allGames = useSelector((state) => state.games);
-  //const [orden, setOrden] = useState("");
+  const myGenres = useSelector((state) => state.allMyGenres);
+  const [orden, setOrden] = useState("");
  const [currentPage, setCurrentPage] = useState(1); //pagina actual
  const [gamesPerPage, setGamesPerPage] = useState(15);//videos por pagina
  const indexOfLastGame = currentPage * gamesPerPage; //15 
@@ -23,8 +25,22 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(getAllGames());
+    dispatch(getAllGames())
+    dispatch(getAllGenres());
   }, [dispatch]);
+
+  function handleFilterByGenre(e) {
+    e.preventDefault();
+    dispatch(filterByGenre(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`)
+  }
+
+  function handleFilterCreated(e) {
+    e.preventDefault();
+    dispatch(filterCreated(e.target.value));
+    setCurrentPage(1);
+  }
 
   // recetea lo que se despacha funcion preventiva
 function handleClick(e){
@@ -32,7 +48,23 @@ function handleClick(e){
   dispatch(getAllGames());//despacho la accion
  }
 
+ function handleOrderByRating(e) {
+  e.preventDefault();
+  e.target.value === "all"
+    ? dispatch(getAllGames) && setOrden(`Rating ${e.target.value}`)
+    : dispatch(orderByRating(e.target.value));
+  setOrden(`Rating ${e.target.value}`);
+  setCurrentPage(1);
+}
 
+function handleOrderByName(e) {
+  e.preventDefault();
+  e.target.value === "all"
+    ? dispatch(orderByName) && setOrden(`ABC ${e.target.value}`)
+    : dispatch(orderByName(e.target.value));
+  setOrden(`ABC ${e.target.value}`);
+  setCurrentPage(1);
+}
 
   return (
     <div>
@@ -42,27 +74,34 @@ function handleClick(e){
     volver a cargar todas las razas de perros
  </button>
     <div>
-    <select >
-          <option value="All">Todos </option>
-          <option value="min">Peso Min</option>
-          <option value="max">Peso Max</option>
-        </select>
+    <select onChange={(e) => handleOrderByRating(e)}>
+            <option value="all">Todos</option>
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+    </select>
     
-    <select>
-        <option value= "All">Todos</option>  
-        <option value= "asc">De la A-Z</option>
-        <option value= "desc">De la Z-A</option>                                   
+    <select onChange={(e) => handleOrderByName(e)}>
+          <option value="all">Todos</option>
+          <option value="asc"> de la A-Z</option>
+          <option value="desc"> de la Z-A</option>
     </select>
    
-    <select>
-        <option value= "All">Todos</option>
-        <option value= "created">Creados</option>
-        <option value= "api">De la api</option>
+    <select onChange={(e) => handleFilterCreated(e)}>
+          <option value="all">Todos</option>
+          <option value="lb">Api</option>
+          <option value="db">Creados</option>
     </select>
-    <select>
-         <option  value= "All">Temperamentos</option>
-            
-    </select>
+
+    <select onChange={(e) => handleFilterByGenre(e)}>
+          <option  value="all">Genres</option>
+          {myGenres?.map((e) => {
+            return (
+              <option key={e.id} value={e.name}>
+                {e.name}
+              </option>
+            );
+          })}
+     </select>
     <div>
         <Paginado 
           gamesPerPage={gamesPerPage}
@@ -70,7 +109,7 @@ function handleClick(e){
           paginado={paginado}
         />
       </div>
-     
+       <SearchBar/>
       <div className="card-dogs">
         {currentGames?.map((e) => {
             return (

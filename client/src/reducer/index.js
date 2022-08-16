@@ -1,7 +1,7 @@
 const inicialState = {
-    allGames: [],
+    allGames: [],//todos los juegos este estado es el que se modifica
     allMyGenres: [],
-    games: [],
+    games: [],//copia del estado  siempre tenga todos los juegos y los recarga de nuevo
     platforms : [],
     gameDetail: []
 }
@@ -61,7 +61,7 @@ export default function rootReducer(state = inicialState, action) {
             }
 
 
-        case 'FILTER_BY_RATING':
+        case 'ORDER_BY_RATING':
             let sorted2 = action.payload === 'desc' ?
                 state.allGames.sort((a, b) => {
                     if (a.rating > b.rating) {
@@ -88,7 +88,7 @@ export default function rootReducer(state = inicialState, action) {
                 games: sorted2
             }
 
-        case 'FILTER_BY_ABC':
+        case 'ORDER_BY_NAME':
             let sorted = action.payload === 'asc' ?
             state.allGames.sort(( a, b ) => {
                 if(a.name > b.name) {
