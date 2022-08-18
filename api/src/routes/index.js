@@ -93,9 +93,6 @@ router.get('/genres', async (req,res) => {
     res.json(allGenres)
 })
 
-
-//route to post videogame
-
 router.post('/videogames', async (req,res) =>{
     let {name, description, released, rating, platforms, background_image, genres} = req.body
 
