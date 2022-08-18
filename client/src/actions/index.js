@@ -67,3 +67,29 @@ export function orderByName(payload) {
        payload
    }
 }
+
+export function postGame(payload){//funcion  post DB
+  return async function(dispatch){
+      const response=await axios.post("http://localhost:3001/videogame", payload)
+      console.log(response)
+      return response
+  }
+}
+
+
+//export function getAllPlatforms(){
+  //return async function(dispatch){
+  //    const json = await axios.get('/platforms')
+  //    const platformss = json.data
+  //    return dispatch({
+  //        type: 'GET_ALL_PLATFORMS',
+   //       payload: platformss        
+   //   })
+ // }
+//}
+
+export function resState() {
+  return {
+    type: "RES_STATE",
+  };
+}

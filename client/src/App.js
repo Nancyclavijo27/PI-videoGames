@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom" //para cetiar las rutas
 import LandingPage from "./components/LandingPage"
 import Home from './components/Home'
-//import CreationGame from "./components/CreationGame"
+import CreationGame from "./components/CreationGame"
 //import Detail from "./components/Detail"
 
 //ruta para renderizar la Landing,  el home, DogCreation y Detail
@@ -16,6 +16,7 @@ import Home from './components/Home'
       <Switch>
          <Route  exact path = "/home" component= {Home}/>
          <Route exact path = "/" component= {LandingPage}/>
+         <Route  path="/Game" component={CreationGame}/>
       </Switch>
       </BrowserRouter>
     

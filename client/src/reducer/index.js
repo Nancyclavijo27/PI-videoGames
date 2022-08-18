@@ -31,20 +31,27 @@ export default function rootReducer(state = inicialState, action) {
                 games: nombre
             }
             
-        case 'GET_ALL_PLATFORMS':
-            return{
-                ...state,
-                platforms : action.payload
-            }
+        //case 'GET_ALL_PLATFORMS':
+        //    return{
+        //        ...state,
+        //        platforms : action.payload
+        //    }
         case 'GET_DETAIL':
             return{
                 ...state,
                 gameDetail: action.payload
             }
-        // case 'POST_GAME':
-        //     return{
-        //         ...state
-        //     }
+
+            case "RES_STATE":
+                return {
+                  ...state,
+                  gameDetail: [],
+                };
+
+        case 'POST_GAME':
+             return{
+                 ...state
+             }
 
         case 'FILTER_BY_GENRE':
 
