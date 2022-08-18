@@ -15,25 +15,19 @@ import "./CreationGame.css";
         error.name = "No se permiten números ni símbolos en el nombre";
     }
 
-    if (!input.description) {
-      error.description = "Description is required ";
-    } else if (input.description.length > 1500) {
+   if (input.description.length > 1500) {
       error.description = "La descripción es demasiado larga. (Máx. = 1500 caracteres)";
     }
 
-    if (!input.rating) {
-      error.rating = "Rating is required";
-    } else if (input.rating > 5 || input.rating < 0) {
+   if (input.rating > 5 || input.rating < 0) {
       error.rating = "La calificación debe oscilar entre 0 y 5";
     }
 
-    if (!input.released) {
-      error.released = "Date of release is required";
-    } else if (input.released.length < 10) {
-      error.released = "La fecha de lanzamiento es larga";
+   if (input.released.length < 10) {
+      error.released = "   fecha de lanzamiento";
     }
-    if (!input.img) {
-      error.img = "Image URL is required";
+    if (!input.background_image) {
+      error.background_image = "Image URL is required";
     }
 
     if (!input.genres[0]) {
@@ -144,10 +138,11 @@ import "./CreationGame.css";
     });
   }
   
+  
   function handleSubmit(e) {
-    //e.preventDefault();
+    e.preventDefault();
 
-   // console.log(e.data);
+    console.log(e.data);
 
     //let crear = {
     //  name: input.name,
@@ -231,7 +226,7 @@ import "./CreationGame.css";
               onChange={handleOnChange}
               placeholder="Ingresa Imagen"
             />
-            {error.img &&(<span className="red">{error.background_image}</span>)}
+            {error.background_image &&(<span className="red">{error.background_image}</span>)}
           </div>
 
           <div>

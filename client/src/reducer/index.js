@@ -31,11 +31,6 @@ export default function rootReducer(state = inicialState, action) {
                 games: nombre
             }
             
-        //case 'GET_ALL_PLATFORMS':
-        //    return{
-        //        ...state,
-        //        platforms : action.payload
-        //    }
         case 'GET_DETAIL':
             return{
                 ...state,
