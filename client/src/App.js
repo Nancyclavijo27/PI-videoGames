@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom" //para cetiar las 
 import LandingPage from "./components/LandingPage"
 import Home from './components/Home'
 import CreationGame from "./components/CreationGame"
-//import Detail from "./components/Detail"
+import Detail from "./components/Detail"
 
 //ruta para renderizar la Landing,  el home, DogCreation y Detail
 
@@ -14,9 +14,10 @@ import CreationGame from "./components/CreationGame"
     <div className="App">
       <BrowserRouter>
       <Switch>
+         <Route  path="/home/:id" component={Detail} />
          <Route  exact path = "/home" component= {Home}/>
-         <Route exact path = "/" component= {LandingPage}/>
          <Route  path="/Game" component={CreationGame}/>
+         <Route  exact path = "/" component= {LandingPage}/>
       </Switch>
       </BrowserRouter>
     

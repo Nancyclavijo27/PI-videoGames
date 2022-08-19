@@ -37,6 +37,8 @@ export default function rootReducer(state = inicialState, action) {
                 gameDetail: action.payload
             }
 
+          
+
             case "RES_STATE":
                 return {
                   ...state,
@@ -124,6 +126,7 @@ export default function rootReducer(state = inicialState, action) {
             ...state,
             games: action.payload === "origin" ? state.allGames : createdFilter,
           };
+          
           case 'CLEAR':
             return {
                 ...state,

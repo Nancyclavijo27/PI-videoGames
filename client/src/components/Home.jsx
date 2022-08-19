@@ -116,11 +116,13 @@ function handleOrderByName(e) {
               <Fragment>
               <Link  to={`/home/${e.id}`}>
                 <Card
+                  id={e.id}
                   name={e.name}
                   background_image={e.background_image}
                   rating={e.rating}
                   key={e.id}
                   genres={e.genres}
+                
                 />
               </Link>
               </Fragment>

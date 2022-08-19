@@ -77,6 +77,31 @@ export function postGame(payload) {
 
 
 
+export function getDetail(id){//funcion detallee
+  return async function (dispatch) {
+      try {
+          var json = await axios.get("http://localhost:3001/videogames/" + id);
+          return dispatch ({
+              type: "GET_DETAIL",
+              payload: json.data
+          })
+      }
+      catch(error) {
+          console.log(error)
+      }
+  }
+}
+
+
+export function clear(){
+  return{
+      type: 'CLEAR',
+      payload : []
+  }
+}
+
+
+
 export function resState() {
   return {
     type: "RES_STATE",
