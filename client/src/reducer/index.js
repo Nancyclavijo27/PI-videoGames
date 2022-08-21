@@ -120,8 +120,8 @@ export default function rootReducer(state = inicialState, action) {
         case 'FILTER_CREATED':
             const createdFilter =
             action.payload === "db"
-              ? state.allGames.filter((e) => e.createDB)
-              : state.allGames.filter((e) => !e.createDB);
+              ? state.allGames.filter((e) => e.createdDB)
+              : state.allGames.filter((e) => !e.createdDB);
           return {
             ...state,
             games: action.payload === "origin" ? state.allGames : createdFilter,

@@ -7,7 +7,6 @@ import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import "./Home.css";
-//import NavBar from "./NavBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -39,7 +38,7 @@ export default function Home() {
   function handleFilterCreated(e) {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
-    setCurrentPage(1);
+    
   }
 
   // recetea lo que se despacha funcion preventiva

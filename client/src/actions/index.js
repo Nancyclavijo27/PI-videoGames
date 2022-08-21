@@ -93,6 +93,7 @@ export function getDetail(id){//funcion detallee
 }
 
 
+
 export function clear(){
   return{
       type: 'CLEAR',

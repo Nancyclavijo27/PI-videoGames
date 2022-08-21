@@ -74,6 +74,7 @@ import "./CreationGame.css";
       background_image: "",
       platforms: [],
       genres: [],
+      
     });
   
     useEffect(() => {

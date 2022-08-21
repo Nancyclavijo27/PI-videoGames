@@ -6,8 +6,9 @@ import "./Detail.css";
 
 
 export default function Details(props) {
+  
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(getDetail(props.match.params.id));
     return () => {
