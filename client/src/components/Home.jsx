@@ -67,31 +67,31 @@ function handleOrderByName(e) {
 
   return (
     <div>
-      <Link   to="/game">Añadir nueva raza</Link>
+      <Link className="link"  to="/game">Añadir un nuevo juego</Link>
  <h1>Busca y conoce a tu mejor amigo</h1>
  <button  className="btn" onClick={e=>{handleClick(e)}}>
     volver a cargar todas las razas de perros
  </button>
     <div>
-    <select onChange={(e) => handleOrderByRating(e)}>
-            <option value="all">Todos</option>
+    <select className="selec" onChange={(e) => handleOrderByRating(e)}>
+            <option value="all">Todos Rating</option>
             <option value="asc">Ascendente</option>
             <option value="desc">Descendente</option>
     </select>
     
-    <select onChange={(e) => handleOrderByName(e)}>
-          <option value="all">Todos</option>
+    <select className="selec" onChange={(e) => handleOrderByName(e)}>
+          <option value="all">Todos ABC</option>
           <option value="asc"> de la A-Z</option>
           <option value="desc"> de la Z-A</option>
     </select>
    
-    <select onChange={(e) => handleFilterCreated(e)}>
-          <option value="all">Todos</option>
+    <select className="selec" onChange={(e) => handleFilterCreated(e)}>
+          <option value="all">Todos origen</option>
           <option value="lb">Api</option>
           <option value="db">Creados</option>
     </select>
 
-    <select onChange={(e) => handleFilterByGenre(e)}>
+    <select className="selec" onChange={(e) => handleFilterByGenre(e)}>
           <option  value="all">Genres</option>
           {myGenres?.map((e) => {
             return (
@@ -113,13 +113,13 @@ function handleOrderByName(e) {
         {currentGames?.map((e) => {
             return (
               <Fragment>
-              <Link  to={`/home/${e.id}`}>
+              <Link  to={`/home/${e.id}`} key={e.id}>
                 <Card
+                  key={e.id}
                   id={e.id}
                   name={e.name}
                   background_image={e.background_image}
                   rating={e.rating}
-                  key={e.id}
                   genres={e.genres}
                 
                 />

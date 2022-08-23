@@ -174,7 +174,7 @@ import "./CreationGame.css";
   }
 
   return (
-    <div className="containerPadre">
+    <div>
       <div className="subContainer">
 
         <div className="firstContainerForm">

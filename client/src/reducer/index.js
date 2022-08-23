@@ -3,7 +3,7 @@ const inicialState = {
     allMyGenres: [],
     games: [],//copia del estado  siempre tenga todos los juegos y los recarga de nuevo
     platforms : [],
-    gameDetail: []
+    gameDetail: {}
 }
 
 

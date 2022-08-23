@@ -1,44 +1,91 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetail, clear } from "../actions/index";
+import { useParams, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getDetail, resState } from "../actions";
+
 import "./Detail.css";
 
 
-export default function Details(props) {
-  
+export default function Detail() {
+  const { id } = useParams();
+  const gameDetail1 = useSelector((state) => state.gameDetail);
   const dispatch = useDispatch();
-  
+  console.log(gameDetail1);
+
   useEffect(() => {
-    dispatch(getDetail(props.match.params.id));
+    dispatch(getDetail(id));
     return () => {
-      dispatch(clear());
+      dispatch(resState());
     };
-  }, [dispatch, props.match.params.id]);
+  }, [dispatch, id]);
 
-  
-
-  const myGame = useSelector((state) => state.gameDetail);
-
-  return (   
-    
-    <div> 
-      <div>
-      <Link to="/home"><button>Volver</button></Link>
+  if (Object.keys(gameDetail1).length === 0) {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "-10rem",
+          marginLeft: "3rem",
+        }}
+      >
+        
       </div>
-    {myGame.length > 0 ?//pregunto tiene algo 
-    <div>
-        <h1>Es:{myGame[0].name}</h1>
-        <img src={myGame[0].background_image? myGame[0].background_image: myGame[0].background_image}  alt="" width="500px"height="300px"/>
-        <h4>rating:{myGame[0].rating}</h4>
-        <h3>Plataformas y generos:</h3>
-        <p>{myGame[0].platform ? myGame[0].platform : myGame[0].platforms} | {myGame[0].genres ? myGame[0].genres : myGame[0].Genres.map(e=> e.name).join(', ')} </p>
-        <p>released:{myGame[0].released}</p>
-        <h3>description</h3>
-        <div ><p>{myGame[0].description}</p></div>
-     </div>:<p>Loading...</p>
-   
-    }
-    </div>
-    )
-    }
+    );
+  } else {
+    return (
+      <div className="paginado2">
+        <div>
+          <Link to="/home">
+            <button className="botonDetails" onClick={resState}>
+              Home
+            </button>
+          </Link>
+        </div>
+        <div>
+          <img
+            className="imagdetalle"
+            src={gameDetail1[0].background_image }
+            alt={gameDetail1[0].name}
+            width="450px"
+            height="450px"
+          />
+        </div>
+
+        <div className="cardDetalle">
+          <div>
+            <h1>{gameDetail1[0].name}</h1>
+          </div>
+          <div className="base3">
+            <h4>Genres:</h4>
+            <p>
+              {Array.isArray(gameDetail1[0].genres)
+                ? gameDetail1[0].genres.map((e) => e.name + " ")
+                : gameDetail1[0].genres}
+            </p>
+          </div>
+          <div className="base3">
+            <h4>Rating:</h4>
+            <p>{gameDetail1[0].rating}</p>
+          </div>
+          <div className="base3">
+            <h4>Released:</h4>
+            <p>{gameDetail1[0].released}</p>
+          </div>
+          <div className="base3">
+            <h4>Platforms:</h4>
+            <p>{gameDetail1[0].platform ? gameDetail1[0].platform : gameDetail1[0].platforms} </p>
+             
+          </div>
+          <div className="base">
+            <h4>Description:</h4>
+            <p>{gameDetail1[0].description}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}

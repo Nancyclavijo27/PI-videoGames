@@ -11,7 +11,7 @@
 
 .btn {
     width: 20%;
-  background-color: rgb(161, 210, 213);
+  background-color:  #852a2a;
   color: black;
   padding: 10px 10px;
   margin-top: 15px;
@@ -28,10 +28,16 @@
   padding: 12px 20px;
   margin: 8px 20px;
   display: inline-block;
-  border: 1px solid rgb(144, 190, 155);
+  border: 1px solid rgb(223, 18, 18);
   border-radius: 4px;
   box-sizing: border-box;
   font: lighter 1vw'Acme', sans-serif;
   color: black;
-  background-color:  #b3e5cc;
+  background-color:  #852a2a;
 }
+
+.link{
+  color: white;
+  border-bottom: 1px solid white;
+}
+
