@@ -36,18 +36,39 @@ const getApiInfo = async () => {
 }
 
 //Funtion to get videogames from the database
-const getInfoDB = async () => {
-    const dbData = await Videogame.findAll({
-      include: {
-        model: Genre,
-        attribute: ["name"],
-        through: {
-          attributes: [],
+
+
+  const getInfoDB = async () => {
+    
+      let dbData = await Videogame.findAll({
+        include: {
+          model: Genre,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
         },
-      },
-    });
-    return dbData;
-  };
+      });
+
+      const allGamesresult =dbData.map(d=>{
+        return {
+          id: d.id,
+          name: d.name,
+          background_image: d.background_image,
+          description: d.description,
+          rating: d.rating,
+          released: d.released,
+          platforms: d.platforms,
+          genres: d.genres,
+          createdDB: true,
+        }
+      })
+      return allGamesresult
+    }
+
+    
+  
+  
 
 // Function to get videosgames from api and db
 const getAllVideogames = async () =>{
