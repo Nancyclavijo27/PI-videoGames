@@ -68,7 +68,7 @@ function handleOrderByName(e) {
   return (
     <div>
       <Link className="link"  to="/game">Añadir un nuevo juego</Link>
- <h1>Busca y conoce a tu mejor amigo</h1>
+ <h1>Busca y conoce los mejores juegos</h1>
  <button  className="btn" onClick={e=>{handleClick(e)}}>
     volver a cargar todas las razas de perros
  </button>
@@ -105,6 +105,7 @@ function handleOrderByName(e) {
         <Paginado 
           gamesPerPage={gamesPerPage}
           allVideoGames={allGames.length}
+          currentPage={currentPage}
           paginado={paginado}
         />
       </div>
