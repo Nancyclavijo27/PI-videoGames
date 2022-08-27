@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux" //lo traigo del react redux
 import { store } from "./store";//lo traigo del store
-import {BrowserRouter} from "react-router-dom"
 
 ReactDOM.render(//siempre se debe rodear la aplicacion o archivo raiz en provider
 <Provider store={store}>

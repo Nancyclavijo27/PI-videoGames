@@ -91,6 +91,7 @@ export default function rootReducer(state = inicialState, action) {
                 ...state,
                 games: sorted2
             }
+  
 
         case 'ORDER_BY_NAME':
             let sorted = action.payload === 'asc' ?

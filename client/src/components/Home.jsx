@@ -56,6 +56,7 @@ function handleClick(e){
   setCurrentPage(1);
 }
 
+
 function handleOrderByName(e) {
   e.preventDefault();
   e.target.value === "all"
@@ -78,7 +79,7 @@ function handleOrderByName(e) {
             <option value="asc">Ascendente</option>
             <option value="desc">Descendente</option>
     </select>
-    
+
     <select className="selec" onChange={(e) => handleOrderByName(e)}>
           <option value="all">Todos ABC</option>
           <option value="asc"> de la A-Z</option>
@@ -105,7 +106,6 @@ function handleOrderByName(e) {
         <Paginado 
           gamesPerPage={gamesPerPage}
           allVideoGames={allGames.length}
-          currentPage={currentPage}
           paginado={paginado}
         />
       </div>
@@ -122,7 +122,6 @@ function handleOrderByName(e) {
                   background_image={e.background_image}
                   rating={e.rating}
                   genres={e.genres}
-                
                 />
               </Link>
               </Fragment>

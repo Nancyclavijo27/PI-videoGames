@@ -114,9 +114,9 @@ import "./CreationGame.css";
  function handleSelectPlatform(e){//logica del select
     const { value } = e.target;
   if (input.platforms.includes(value))
-    return alert("Ya has seleccionado ese temperamento")
+    return alert("Ya has seleccionado esa plataforma")
     if (input.platforms.length === 3) {
-      alert("Solo se puede ingresar tres temperamentos!");
+      alert("Solo se puede ingresar tres plataformas!");
     } else if (input.platforms.length < 3) {
       setInput({
         ...input,
