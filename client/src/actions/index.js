@@ -14,6 +14,7 @@ export function getAllGames() {
     };
   }
 
+
   export function getAllGenres() {
    return function (dispatch) {
      axios

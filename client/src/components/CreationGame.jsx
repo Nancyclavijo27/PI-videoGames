@@ -9,8 +9,10 @@ import "./CreationGame.css";
 
     if (!input.name) {
       error.name = "Ingrese el nombre";
-    } else if (input.name.length > 50) {
-      error.name = "El nombre es demasiado largo";
+    } else if (input.name[0] === input.name[0].toLowerCase()) {
+      error.name = "La primera letra debe estar en mayúsculas ";
+    } else if (input.name.length <= 3 || input.name.length >= 10) {
+      error.name = "El nombre debe contener de 3 a 10 caracteres";
     } else if (input.name.search(/^[a-zA-Z\s]*$/)) {
         error.name = "No se permiten números ni símbolos en el nombre";
     }
@@ -31,11 +33,11 @@ import "./CreationGame.css";
     }
 
     if (!input.genres[0]) {
-      error.genres = "Minimun one Genre is required ";
+      error.genres = "Mínimo un género es requerido ";
     }
 
     if (!input.platforms[0]) {
-      error.platforms = "Minimun one Platform is required";
+      error.platforms = "Se requiere una plataforma mínima";
     }
 
     return error;
@@ -45,6 +47,7 @@ import "./CreationGame.css";
     const dispatch = useDispatch();
     const history = useHistory();
     const genres = useSelector((state) => state.allMyGenres);
+    const allGames = useSelector((e) => e.games);
     const [error, setError] = useState({});
     let platformss = [
         "PC",
@@ -100,9 +103,9 @@ import "./CreationGame.css";
   function handleSelectGenres(e){//logica del select
     const { value } = e.target;
   if (input.genres.includes(value))
-    return alert("Ya has seleccionado ese temperamento")
+    return alert("Ya has seleccionado ese genero")
     if (input.genres.length === 3) {
-      alert("Solo se puede ingresar tres temperamentos!");
+      alert("Solo se puede ingresar tres generos!");
     } else if (input.genres.length < 3) {
       setInput({
         ...input,
@@ -153,9 +156,14 @@ import "./CreationGame.css";
      // img: input.img,
      // platforms: input.platforms.join(", "),
      // genres: input.genres.join(", "),
+     const a = allGames.filter((b) => b.name === input.name);
      if(!input.name || !input.description || !input.rating || !input.released || !input.platforms || !input.genres){
         return alert('Complete los campos vacios.')
       };
+      if (a.length > 0) {
+        return alert("Ya hay un juego con ese nombre, prueba otro");
+      }
+      
 
     dispatch(postGame(input));
     alert("Juego creado!!")
