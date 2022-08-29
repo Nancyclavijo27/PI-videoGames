@@ -99,7 +99,7 @@ router.get('/videogames', async (req,res) =>{
     }
 })
 
-//Route to get genders and save in my db
+//Ruta para obtener géneros y guardar en mi db
 router.get('/genres', async (req,res) => {
     const genresApi = await axios.get(`https://api.rawg.io/api/genres?key=${YOUR_API_KEY}`);
     const genres = await genresApi.data.results.map(e => e.name)
