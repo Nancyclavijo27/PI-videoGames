@@ -109,7 +109,9 @@ function handleOrderByName(e) {
           paginado={paginado}
         />
       </div>
-       <SearchBar/>
+      <SearchBar 
+                    SetCurrentPage={setCurrentPage}
+                    />
       <div className="card-dogs">
         {currentGames?.map((e) => {
             return (

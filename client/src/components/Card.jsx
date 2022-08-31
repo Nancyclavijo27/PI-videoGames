@@ -5,7 +5,7 @@ import "./Card.css";
 export default function Card({ id, genres, name, background_image, rating }) {
  
   return (
-    <div className='cardContainer'>
+    <div className='cardContainer'  key={id}>
       <div>
         <div>
           <img

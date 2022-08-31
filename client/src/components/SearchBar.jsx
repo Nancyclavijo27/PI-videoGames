@@ -1,38 +1,38 @@
-
-import { React, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getAllGames, getGameBySearch } from "../actions";
+import React from "react";
+import { useState } from "react";
+import {useDispatch} from "react-redux";
+import { getGameBySearch } from "../actions";
 import "./SearchBar.css";
 
-export default function Search({ setCurrentPage }) {
-  const dispatch = useDispatch();
-  const [name, setName] = useState("");
+export default function SearchBar(){
+    const dispatch = useDispatch()
+    const [name, setName]=useState("")//para crear un estadol local, inicialmente en un string vacio
 
-  useEffect(() => {
-    dispatch(getAllGames());
-  }, [dispatch]);
+    function handleInputChange(e){ //esta funcion guarda en el estado local lo que llega en el input
+        e.preventDefault()
+        setName(e.target.value)
+        console.log(name)
+    }
+    function handleSubmit(e){
+        e.preventDefault()
+        dispatch(getGameBySearch(name))//este es mi estado local
+        
+    }
 
-  function handleInputChange(e) {
-    dispatch(getGameBySearch(e));
-    setCurrentPage(1);
-  }
+    //logica del renderizado
+    return(
+        <div>
+            <input
+            type="text"
+            placeholder="Buscar..."
+          
+            onChange={(e)=>handleInputChange(e)}
+            />
+            <button  type="submit"onClick={(e)=>handleSubmit(e)}>Buscar</button>
+        </div>
+    )
 
-  return (
-    <div>
-      <div className="group">
-        <input
-          onChange={(e) => {
-            setName(e.target.value);
-            handleInputChange(e.target.value);
-          }}
-          type="text"
-          placeholder="Search"
-          className="input"
-          value={name}
-        />
-        <span className="highlight"></span>
-        <span className="bar"></span>
-      </div>
-    </div>
-  );
+
+
 }
+
