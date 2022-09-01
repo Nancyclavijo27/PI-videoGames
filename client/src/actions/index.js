@@ -38,35 +38,13 @@ export function getAllGames() {
    };
  }
 
- //export function getGameBySearch(name) {
-
-  // try{
-   //    return{
-    //       type: 'GET_GAME_BY_SEARCH',
-     //      payload: name
-     //      }
-     //  }catch(error){
-     //      console.log(error)
-     //  }
-//}
-
-export function getGameBySearch(name){ 
-       // mi payload va a ser el name que me pasen por query
-       return async function (dispatch){
-           try {
-              let det= await axios.get(`http://localhost:3001/videogames?name=${name}`)
-              return dispatch({
-               type: 'GET_GAME_BY_SEARCH',
-               payload: det.data, 
-               // aca me devuelve lo que filtre en mi back cuando cree la ruta.
-               })
-           } catch (error) {
-               console.log(error)
-               alert("No se encuentra el videogame")
-           }
-      }
-   }
-
+ 
+ export function getName(name) {
+  return {
+    type: "GET_NAME",
+    payload: name,
+  };
+}
   export function filterByGenre(payload) {//filtro generos
    return {
        type: 'FILTER_BY_GENRE',

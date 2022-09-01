@@ -4,6 +4,7 @@ const inicialState = {
     games: [],//copia del estado  siempre tenga todos los juegos y los recarga de nuevo
     platforms : [],
     gameDetail: {}
+    
 }
 
 
@@ -22,20 +23,18 @@ export default function rootReducer(state = inicialState, action) {
                 allMyGenres: action.payload
             }
 
-        //case   'GET_GAME_BY_SEARCH':
-
-           // let nombre = action.payload === '' ? state.allGames : state.allGames.filter(e => e.name.toLowerCase().includes(action.payload.toLowerCase()))
-
-           // return{
-            //    ...state,
-             //   games: nombre
-           // }
-
-            case 'GET_GAME_BY_SEARCH':
-                return {
-                    ...state,
-                   games: action.payload
-               }
+            case "GET_NAME":
+      let nombres =
+        state.payload === ""
+          ? state.allGames
+          : state.allGames.filter((e) =>
+              e.name.toLowerCase().includes(action.payload.toLowerCase())
+            );
+      return {
+        ...state,
+        games: nombres,
+        
+      };     
             
         case 'GET_DETAIL':
             return{
