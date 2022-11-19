@@ -85,7 +85,7 @@ export function postGame(payload) {
 export function getDetail(id){//funcion detallee
   return async function (dispatch) {
       try {
-          var json = await axios.get("http://localhost:3001/videogames/" + id);
+          var json = await axios.get(`http://localhost:3001/videogames/${id}`);
           return dispatch ({
               type: "GET_DETAIL",
               payload: json.data
@@ -93,6 +93,7 @@ export function getDetail(id){//funcion detallee
       }
       catch(error) {
           console.log(error)
+          alert("No hay detalle para este id")
       }
   }
 }
@@ -113,3 +114,18 @@ export function resState() {
     type: "RES_STATE",
   };
 }
+
+export const deleteGame = (id) => {
+  return async function (dispatch) {
+      try {
+          await axios.delete(`/deleted/${id}`);
+          return dispatch({
+              type: "DELETE_GAME",
+      });
+      } catch (e) {
+          return dispatch({
+              type: "ERROR",
+      });
+      }
+  };
+};

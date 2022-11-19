@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {getAllGames, filterByGenre,  getAllGenres,  filterCreated, orderByRating, orderByName} from "../actions";
@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import Loader from "./Loader"
+
+
 import "./Home.css";
 
 export default function Home() {
@@ -13,6 +16,7 @@ export default function Home() {
   const allGames = useSelector((state) => state.games);
   const myGenres = useSelector((state) => state.allMyGenres);
   const [orden, setOrden] = useState("");
+  const [charge, setCharge] = useState(false);
  const [currentPage, setCurrentPage] = useState(1); //pagina actual
  const [gamesPerPage, setGamesPerPage] = useState(15);//videos por pagina
  const indexOfLastGame = currentPage * gamesPerPage; //15 
@@ -41,6 +45,16 @@ export default function Home() {
     
   }
 
+  useEffect(() => {
+    setCharge(true);
+    setTimeout(() => {
+      setCharge(false);
+    }, 10000);
+    dispatch(getAllGames());
+  }, [dispatch]
+);
+
+
   // recetea lo que se despacha funcion preventiva
 function handleClick(e){
   e.preventDefault();
@@ -68,10 +82,10 @@ function handleOrderByName(e) {
 
   return (
     <div>
-      <Link className="link"  to="/game">Añadir un nuevo juego</Link>
- <h1>Busca y conoce los mejores juegos</h1>
+      <Link className="link"  to="/game"><button>Crear Videojuego</button></Link>
+ <h1 className='tit'>Busca y conoce los mejores juegos</h1>
  <button  className="btn" onClick={e=>{handleClick(e)}}>
-    volver a cargar todas las razas de perros
+    volver a cargar todos los juegos
  </button>
     <div>
     <select className="selec" onChange={(e) => handleOrderByRating(e)}>
@@ -107,30 +121,38 @@ function handleOrderByName(e) {
           gamesPerPage={gamesPerPage}
           allVideoGames={allGames.length}
           paginado={paginado}
+          currentPage={currentPage}
         />
       </div>
+      <div className='search'>
       <SearchBar 
        setCurrentPage={setCurrentPage}
                     />
-      <div className="card-dogs">
-        {currentGames?.map((e) => {
-            return (
-              <Fragment>
-              <Link  to={`/home/${e.id}`} key={e.id}>
-                <Card
-                  key={e.id}
-                  id={e.id}
-                  name={e.name}
-                  background_image={e.background_image}
-                  rating={e.rating}
-                  genres={e.genres}
-                />
-              </Link>
-              </Fragment>
-            
-            )
-        })} 
       </div>
+      <div className="card">
+            {   
+                charge ? (
+                    <div>
+                        <Loader />
+                    </div>
+                ) :
+                currentGames && currentGames.map(el =>{
+                    return ( 
+                        
+                        <Card 
+                            key={el.id}
+                            name= {el.name} 
+                            background_image= {el.background_image} 
+                            genres={el.genres}
+                            rating={el.rating}
+                            id={el.id}
+                           
+                        />
+                        
+                    )
+                })
+            }
+            </div>
     </div>
   
     </div>

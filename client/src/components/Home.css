@@ -9,10 +9,38 @@
     
 }
 
+.card{
+  
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  
+  
+}
+
+.div-not-found{
+  border: 3px solid  #4d0710;
+  border-radius: 35px;
+  width: 400px;
+  height: 300px;
+  margin: 15px;
+  background-color:  #212121;
+  text-align: center;
+  font-family: 'TTVTechPrecomput', sans-serif;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  color:  #cdc9c2;
+}
+
 .btn {
     width: 20%;
   background-color:  #852a2a;
-  color: black;
+  color: white;
   padding: 10px 10px;
   margin-top: 15px;
   border: none;
@@ -32,12 +60,37 @@
   border-radius: 4px;
   box-sizing: border-box;
   font: lighter 1vw'Acme', sans-serif;
-  color: black;
+  color: white;
   background-color:  #852a2a;
 }
 
+
 .link{
   color: white;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid  #852a2a;
+}
+
+.container{
+  flex-direction: row;
+}
+
+.search{
+  position:relative;
+  flex-direction: row;
+  left: 48%;
+  right: 50%;
+  top: 0rem;
+}
+
+.tit{
+  font-size: 60px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;;
+  font-weight: bold;
+  display: flex;
+  justify-content: left;
+  padding-left: 18%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  text-shadow: 2px 4px 10px white;
 }
 

@@ -182,25 +182,18 @@ import "./CreationGame.css";
   }
 
   return (
-    <div>
-      <div className="subContainer">
+    <div className="contenedorF">
+      <div className="contenedor2">
 
-        <div className="firstContainerForm">
-      
-        <Link to="/home">
-          <div className="buttonContainer"><button className="buttonForm"> HOME</button></div>
-          
-        </Link>
-
-        <div className="containerForm">
-
-        <h1 className="titulo">Crea tu videojuego</h1>
+        <div className="detail">
+        <Link to="/home"><button className="butt" id="volver">Volver</button></Link>
+        <h1 className="tittleForm">Crea un videogame!!!</h1>
         <form className="form" onSubmit={(e) => handleSubmit(e)}>
-        <p className="info">* : Requerido</p>
+        <p className="sub">* : Requerido</p>
           <div>
-          <label className="info">*Nombre:</label>
+          <label className="labels">*Nombre:</label>
             <input key={"name"}
-            className="thisInput"
+            className='inputs'
               type="text"
               value={input.name}
               name="name"
@@ -208,40 +201,40 @@ import "./CreationGame.css";
               required
               placeholder="Ingresa nombre"
             />
-            {error.name && (<span className="red">{error.name}</span>)}
+            {error.name && (<span className="err">{error.name}</span>)}
             
           </div>
 
           <div>
-            <label>*Released:</label>
+            <label className="labels">*Released:</label>
             <input key={"released"}
-             className="thisInput"
+             className='inputs'
               type="date"
               value={input.released}
               name="released"
               onChange={handleOnChange}
               
             />
-            {error.released && (<span className="red">{error.released}</span>)}
+            {error.released && (<span className="err">{error.released}</span>)}
           </div>
 
           <div>
-            <label>Imagen/Url:</label>
+            <label className="labels">Imagen/Url:</label>
             <input key={"background_image"}
-             className="thisInput"
+             className='inputs'
               type="text"
               value={input.background_image}
               name="background_image"
               onChange={handleOnChange}
               placeholder="Ingresa Imagen"
             />
-            {error.background_image &&(<span className="red">{error.background_image}</span>)}
+            {error.background_image &&(<span className="err">{error.background_image}</span>)}
           </div>
 
           <div>
-            <label>*Rating:</label>
+            <label className="labels">*Rating:</label>
             <input key={"rating"}
-             className="thisInput"
+             className='inputs'
               type="number"
               value={input.rating}
               name="rating"
@@ -249,12 +242,12 @@ import "./CreationGame.css";
               required
               placeholder="Ingresa calificacion"
             />
-            {error.rating && (<span className="red">{error.rating}</span>)}
+            {error.rating && (<span className="err">{error.rating}</span>)}
           </div>
           <div>
-            <label>*Genres</label>
-            <select  className="thisInput" onChange={(e) => handleSelectGenres(e)}>
-              <option value="all">All</option>
+            <label className="labels">*Genres</label>
+            <select  className="select" onChange={(e) => handleSelectGenres(e)}>
+              <option value="all" className="option">All</option>
               {genres?.map((e) => {
                 return (
                   <option key={e.id} value={e.name}>
@@ -263,9 +256,9 @@ import "./CreationGame.css";
                 );
               })}
             </select>
-            {error.genres && <span className="red">{error.genres}</span>}
+            {error.genres && <span className="err">{error.genres}</span>}
           </div>
-          <div className="selected">
+          <div className="subdetail">
             {input.genres?.map((e) => {
               return (
                 <>
@@ -276,24 +269,24 @@ import "./CreationGame.css";
             })}{" "}
           </div>
           <div>
-            <p>Platforms</p>
+            <p className="labels">Platforms</p>
             <select  key="platforms2"
-            className="boton6"
+            className="select"
             onChange={(e) => handleSelectPlatform(e)}
           >
             {platformss
               .sort((a, b) => (a[0] > b[0] ? 1 : -1))
               .map((e) => (
-                <option key={e} value={e}>
+                <option key={e} value={e} className="option">
                   {e}
                 </option>
               ))}
             </select>
             {error.platforms && (
-              <span className="red">{error.platformss}</span>
+              <span className="err">{error.platformss}</span>
             )}
           </div>
-          <div className="selected">
+          <div className="subdetail">
             {input.platforms?.map((e) => {
               return (
                 <>
@@ -304,29 +297,28 @@ import "./CreationGame.css";
             })}
           </div>
           <div>
-            <p>Description:</p>
+            <p  className="labels">Description:</p>
             <textarea
-              className="textArea"
+              className='inputs'
               type="text"
               value={input.description}
               name="description"
               onChange={handleOnChange}
             />
             {error.description && (
-              <span className="red">{error.description}</span>
+              <span className="err">{error.description}</span>
             )}
           </div>
           {Object.keys(error).length ? (
             <div>
-              <input type="submit" disabled name="Send" />
+              <input type="submit"  className="butt" disabled name="Send" />
             </div>
           ) : (
             <div>
-              <input type="submit" name="Send" />
+              <input type="submit"  className="butt" name="Send" />
             </div>
           )}
         </form>
-        </div>
         </div>
       </div>
         <div className="subContainer2"></div>

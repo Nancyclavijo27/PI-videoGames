@@ -14,9 +14,9 @@ import Detail from "./components/Detail"
     <div className="App">
       <BrowserRouter>
       <Switch>
-         <Route  path="/home/:id" component={Detail} />
+         <Route  exact path="/videogames/:id" component={Detail} />
          <Route  exact path = "/home" component= {Home}/>
-         <Route  path="/Game" component={CreationGame}/>
+         <Route  exact path="/Game" component={CreationGame}/>
          <Route  exact path = "/" component= {LandingPage}/>
       </Switch>
       </BrowserRouter>

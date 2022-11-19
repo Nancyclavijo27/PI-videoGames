@@ -55,6 +55,10 @@ export default function rootReducer(state = inicialState, action) {
                  ...state
              }
 
+             case "DELETE_GAME":
+                return { ...state };
+    
+
         case 'FILTER_BY_GENRE':
 
             let juegos = action.payload

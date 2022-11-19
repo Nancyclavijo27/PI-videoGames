@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetail, resState } from "../actions";
-
+import Loader from "./Loader";
 import "./Detail.css";
 
 
@@ -32,60 +32,42 @@ export default function Detail() {
           marginLeft: "3rem",
         }}
       >
-        
+       <Loader /> 
       </div>
     );
   } else {
     return (
-      <div className="paginado2">
-        <div>
+      <div className="contDetail">
+        <div className="d">
           <Link to="/home">
-            <button className="botonDetails" onClick={resState}>
-              Home
+            <button className="buttD" onClick={resState}>
+              Volver
             </button>
           </Link>
-        </div>
-        <div>
+          <h1 className="tittleDetail">{gameDetail1[0].name}</h1>
           <img
-            className="imagdetalle"
+            className="imgD"
             src={gameDetail1[0].background_image }
             alt={gameDetail1[0].name}
-            width="450px"
-            height="450px"
+            width="700px"
+            height="350px"
           />
-        </div>
-
-        <div className="cardDetalle">
-          <div>
-            <h1>{gameDetail1[0].name}</h1>
-          </div>
-          <div className="base3">
-            <h4>Genres:</h4>
-            <p>
+            <h4 className="subtit">Genres:</h4>
+            <p className="subdetailD">
               {Array.isArray(gameDetail1[0].genres)
                 ? gameDetail1[0].genres.map((e) => e.name + " ")
                 : gameDetail1[0].genres}
             </p>
-          </div>
-          <div className="base3">
-            <h4>Rating:</h4>
-            <p>{gameDetail1[0].rating}</p>
-          </div>
-          <div className="base3">
-            <h4>Released:</h4>
-            <p>{gameDetail1[0].released}</p>
-          </div>
-          <div className="base3">
-            <h4>Platforms:</h4>
-            <p>{gameDetail1[0].platform ? gameDetail1[0].platform : gameDetail1[0].platforms} </p>
-             
-          </div>
-          <div className="base">
-            <h4>Description:</h4>
-            <p>{gameDetail1[0].description}</p>
+            <h4 className="subtit">Rating:</h4>
+            <p className="subdetailD">{gameDetail1[0].rating}</p>
+            <h4 className="subtit">Released:</h4>
+            <p className="subdetailD">{gameDetail1[0].released}</p>
+            <h4 className="subtit">Platforms:</h4>
+            <p className="subdetailD">{gameDetail1[0].platform ? gameDetail1[0].platform : gameDetail1[0].platforms} </p>
+            <h4 className="subtit">Description:</h4>
+            <p className="subdetailD">{gameDetail1[0].description}</p>
           </div>
         </div>
-      </div>
     );
   }
 }
