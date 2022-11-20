@@ -81,13 +81,26 @@ function handleOrderByName(e) {
 }
 
   return (
-    <div>
-      <Link className="link"  to="/game"><button>Crear Videojuego</button></Link>
- <h1 className='tit'>Busca y conoce los mejores juegos</h1>
- <button  className="btn" onClick={e=>{handleClick(e)}}>
-    volver a cargar todos los juegos
- </button>
-    <div>
+    <div  className='homegral'>
+      <div className='containerHome'>
+     <div className='menuNav'>
+     <div className='search'>
+      <SearchBar 
+       setCurrentPage={setCurrentPage}
+                    />
+      </div>
+      <h1 className='tit'>Busca y conoce los mejores juegos</h1>
+      <div  className='paginado'>
+        <Paginado 
+          gamesPerPage={gamesPerPage}
+          allVideoGames={allGames.length}
+          paginado={paginado}
+          currentPage={currentPage}
+        />
+      </div>
+      </div>
+    <div className='menuFilterAndSort'>
+    <label className='lab'>Ordenar:  </label>
     <select className="selec" onChange={(e) => handleOrderByRating(e)}>
             <option value="all">Todos Rating</option>
             <option value="asc">Ascendente</option>
@@ -99,7 +112,8 @@ function handleOrderByName(e) {
           <option value="asc"> de la A-Z</option>
           <option value="desc"> de la Z-A</option>
     </select>
-   
+    <br></br>
+    <label className='lab'>Filtrar:  </label>
     <select className="selec" onChange={(e) => handleFilterCreated(e)}>
           <option value="all">Todos origen</option>
           <option value="lb">Api</option>
@@ -116,20 +130,13 @@ function handleOrderByName(e) {
             );
           })}
      </select>
-    <div>
-        <Paginado 
-          gamesPerPage={gamesPerPage}
-          allVideoGames={allGames.length}
-          paginado={paginado}
-          currentPage={currentPage}
-        />
+     <label className='lab'>Otras acciones: </label>
+     <button  className="crear" onClick={e=>{handleClick(e)}}>
+    volver a cargar todos los juegos
+     </button>
+     <Link className="opt"  to="/game"><button className="crear">Crear Videojuego</button></Link>
       </div>
-      <div className='search'>
-      <SearchBar 
-       setCurrentPage={setCurrentPage}
-                    />
-      </div>
-      <div className="card">
+      <div className="card_gral">
             {   
                 charge ? (
                     <div>
@@ -138,7 +145,6 @@ function handleOrderByName(e) {
                 ) :
                 currentGames && currentGames.map(el =>{
                     return ( 
-                        
                         <Card 
                             key={el.id}
                             name= {el.name} 
