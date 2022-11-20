@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetail, resState } from "../actions";
 import Loader from "./Loader";
+
 import "./Detail.css";
 
 
@@ -38,6 +39,8 @@ export default function Detail() {
   } else {
     return (
       <div className="contDetail">
+        {gameDetail1.length > 0 ? ( 
+        <>
         <div className="d">
           <Link to="/home">
             <button className="buttD" onClick={resState}>
@@ -67,7 +70,11 @@ export default function Detail() {
             <h4 className="subtit">Description:</h4>
             <p className="subdetailD">{gameDetail1[0].description}</p>
           </div>
+        </>
+      ) : <Loader/>} 
         </div>
+        
     );
+   
   }
 }

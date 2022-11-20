@@ -7,7 +7,7 @@ import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import Loader from "./Loader"
-
+import Footer from "./Footer";
 
 import "./Home.css";
 
@@ -160,7 +160,7 @@ function handleOrderByName(e) {
             }
             </div>
     </div>
-  
+    <Footer/>
     </div>
   );
 }
