@@ -184,8 +184,17 @@ if(!id.includes('-')){
     }catch(error){
         res.status(404).send(error)
     }
-    
 
+    router.delete('/delete/:id', async (req, res, next) => {
+        const {id} = req.params;
+        try {
+          await Videogame.destroy ({
+            where: {id: id}
+          })
+          return res.send("deleted!")
+        } catch (error) {
+            res.send("error")
+        }
+      })
 })
-
 module.exports = router;
